@@ -1,6 +1,10 @@
 
 # <p align="center">txiki.js — The tiny JavaScript runtime</p>
 
+## My binary builds of "txiki.js" :sunglasses:
+
+These are my binary builds of "txiki.js", based on a very interesting conversation here "[Windows build - info/discussion](https://github.com/saghul/txiki.js/issues/324)". "txiki.js" is [very](#) [very](#) promising, because it has some important features that "[QuickJS]" lacks. My builds are initially based on the variant of cross compiling "txiki.js" by using Debian MinGW on my Debian-Live image. These builds are not yet completely statically bound ...
+
 ## Overview
 
 > **txikia** (basque): small, tiny.

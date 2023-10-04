@@ -52,6 +52,7 @@ static void tjs__bootstrap_core(JSContext *ctx, JSValue ns) {
     tjs__mod_os_init(ctx, ns);
     tjs__mod_process_init(ctx, ns);
     tjs__mod_signals_init(ctx, ns);
+    tjs__mod_sqlite3_init(ctx, ns);
     tjs__mod_streams_init(ctx, ns);
     tjs__mod_sys_init(ctx, ns);
     tjs__mod_timers_init(ctx, ns);
@@ -127,6 +128,11 @@ static void uv__stop(uv_async_t *handle) {
     CHECK_NOT_NULL(qrt);
 
     uv_stop(&qrt->loop);
+}
+
+static void uv__walk(uv_handle_t *handle, void *arg) {
+    if (!uv_is_closing(handle))
+        uv_close(handle, NULL);
 }
 
 void TJS_DefaultOptions(TJSRunOptions *options) {
@@ -254,6 +260,8 @@ void TJS_FreeRuntime(TJSRuntime *qrt) {
     /* Destroy WASM runtime. */
     m3_FreeEnvironment(qrt->wasm_ctx.env);
 
+    uv_walk(&qrt->loop, uv__walk, NULL);
+
     /* Cleanup loop. All handles should be closed. */
     int closed = 0;
     for (int i = 0; i < 5; i++) {
@@ -266,8 +274,8 @@ void TJS_FreeRuntime(TJSRuntime *qrt) {
 #ifdef DEBUG
     if (!closed)
         uv_print_all_handles(&qrt->loop, stderr);
-#endif
     CHECK_EQ(closed, 1);
+#endif
 
     free(qrt);
 }

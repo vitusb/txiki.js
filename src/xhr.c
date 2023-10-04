@@ -326,6 +326,7 @@ static JSValue tjs_xhr_constructor(JSContext *ctx, JSValueConst new_target, int 
         x->events[i] = JS_UNDEFINED;
     }
 
+    x->curl_private.magic = TJS__CURL_PRIVATE_MAGIC;
     x->curl_private.arg = x;
     x->curl_private.done_cb = curlm__done_cb;
 
@@ -390,7 +391,7 @@ static JSValue tjs_xhr_response_get(JSContext *ctx, JSValueConst this_val) {
             case XHR_RTYPE_JSON:
                 // It's necessary to null-terminate the string passed to JS_ParseJSON.
                 dbuf_putc(bbuf, '\0');
-                x->result.response = JS_ParseJSON(ctx, (char *) bbuf->buf, bbuf->size, "<xhr>");
+                x->result.response = JS_ParseJSON(ctx, (char *) bbuf->buf, bbuf->size-1, "<xhr>");
                 break;
             default:
                 abort();

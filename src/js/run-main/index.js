@@ -129,6 +129,7 @@ if (options.help) {
                     internals.core.evalFile(filename);
                 } catch (e) {
                     console.error(e);
+
                     tjs.exit(1);
                 }
             });

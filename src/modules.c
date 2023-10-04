@@ -132,10 +132,10 @@ JSModuleDef *tjs_module_loader(JSContext *ctx, const char *module_name, void *op
 
 #define TJS__PATHSEP_POSIX '/'
 #if defined(_WIN32)
-#define TJS__PATHSEP '\\'
+#define TJS__PATHSEP     '\\'
 #define TJS__PATHSEP_STR "\\"
 #else
-#define TJS__PATHSEP '/'
+#define TJS__PATHSEP     '/'
 #define TJS__PATHSEP_STR "/"
 #endif
 
@@ -198,6 +198,7 @@ int js_module_set_import_meta(JSContext *ctx, JSValueConst func_val, JS_BOOL use
     if (use_realpath) {
         JS_DefinePropertyValueStr(ctx, meta_obj, "dirname", JS_NewString(ctx, module_dirname), JS_PROP_C_W_E);
         JS_DefinePropertyValueStr(ctx, meta_obj, "basename", JS_NewString(ctx, module_basename), JS_PROP_C_W_E);
+        JS_DefinePropertyValueStr(ctx, meta_obj, "path", JS_NewString(ctx, buf+7), JS_PROP_C_W_E);
     }
     JS_FreeValue(ctx, meta_obj);
     return 0;
@@ -213,7 +214,7 @@ static inline void tjs__normalize_pathsep(const char *name) {
         }
     }
 #else
-    (void)name;
+    (void) name;
 #endif
 }
 

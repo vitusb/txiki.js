@@ -62,6 +62,7 @@ Support for the [ES2020] specification plus some ES2020+ features like top level
 - [JSON modules]
 - [Performance]
 - [setTimeout, setInterval]
+- [Storage API]
 - [Streams API]
 - [URL]
 - [URLPattern]
@@ -106,6 +107,7 @@ The following modules compose the standard library:
 - [`tjs:hashing`](https://bettercallsaghul.com/txiki.js/api/modules/tjs_hashing.html)
 - [`tjs:ipaddr`](https://bettercallsaghul.com/txiki.js/api/modules/tjs_ipaddr.html)
 - [`tjs:path`](https://bettercallsaghul.com/txiki.js/api/modules/tjs_path.html)
+- `tjs:sqlite`
 - [`tjs:uuid`](https://bettercallsaghul.com/txiki.js/api/modules/tjs_uuid.html)
 
 ## Supported platforms
@@ -217,6 +219,7 @@ Built with ❤️ by saghul and these awesome <a href="https://github.com/saghul
 [JSON modules]: https://github.com/tc39/proposal-json-modules
 [Performance]: https://developer.mozilla.org/en-US/docs/Web/API/Performance
 [setTimeout, setInterval]: https://developer.mozilla.org/en-US/docs/Web/API/setTimeout
+[Storage API]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
 [Streams API]: https://developer.mozilla.org/en-US/docs/Web/API/Streams_API
 [URL]: https://developer.mozilla.org/en-US/docs/Web/API/URL
 [URLPattern]: https://developer.mozilla.org/en-US/docs/Web/API/URLPattern
